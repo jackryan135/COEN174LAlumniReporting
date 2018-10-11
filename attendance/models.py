@@ -7,8 +7,11 @@ class Event(models.Model):
     """Model representing an Event."""
     name = models.CharField(max_length=200, help_text='Enter an event name')
     description = models.TextField(max_length=1500, help_text='Enter an event description')
+    location = models.TextField(max_length=75, help_text='Enter location of event')
     date = models.DateField()
+    time = models.TimeField()
     numAttend = models.IntegerField()
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model object."""
