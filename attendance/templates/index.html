@@ -35,7 +35,14 @@
               <a class="nav-link" href="{% url 'events' %}">Events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Create Event</a>
+              <a class="nav-link" href="{% url 'new_event' %}">Create Event</a>
+            </li>
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              {% endif %}
             </li>
           </ul>
         </div>
@@ -45,15 +52,43 @@
 
     <!-- Page Content -->
     {% block content %}
+    <div class="jumbotron"
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1 class="mt-5">SCU Alumni Events</h1>
+          <h1 class="display-4">SCU Alumni Events</h1>
           <p class="lead">This website currently tracks {{num_future_events}} events!</p>
 
         </div>
       </div>
     </div>
+  </div>
+    <div class="container">
+    {% if query_set %}
+    {% for event in query_set %}
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card">
+          <img class="card-img-top" src="http://placehold.it/750x500" alt="">
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="{% url 'event_detail' event.pk %}">{{ event.name }}</a>
+            </h4>
+            <p class="card-text">{{ event.description|truncatechars:300 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- /.row -->
+    {% else %}
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="lead">There are currently no upcoming events</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
     {% endblock %}
 
     <!-- Bootstrap core JavaScript -->

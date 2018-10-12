@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="events home page">
+    <meta name="author" content="John Ryan">
+
+    {% block title %}<title>SCU Alumni Events</title>{% endblock %}
+    {% load crispy_forms_tags %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">SCU Alumni Events</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'new_event' %}">Create Event</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'login' %}">Login
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% endblock %}
+
+    <!-- Page Content -->
+    {% block content %}
+
+    <div class="container h-100">
+      <div class="row h-100">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="card-title">
+            Login
+          </h4>
+          {% if form.errors %}
+          <p class = "lead">Your username and password didn't match. Please try again.</p>
+          {% endif %}
+
+          {% if next %}
+            {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+            {% else %}
+            <p>Please login to see this page.</p>
+            {% endif %}
+          {% endif %}
+
+
+            <form method="post" action="{% url 'login' %}">
+              {% csrf_token %}
+              <p class="bs-component"
+              <div class="form-group">
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+              </div>
+            <div class="form-group">
+              <td>{{ form.password.label_tag }}</td>
+              <td>{{ form.password }}</td>
+            </div>
+          </p>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary"/>Login</button>
+              <input type="hidden" name="next" value="{{ next }}"/>
+              <a class="btn btn-secondary" href="{% url 'register' %}" role="button"/>Register</a>
+            </div>
+          </form>
+        </div>
+</div>
+</div>
+  </div>
+</div>
+    {% endblock %}
+
+  </body>
+
+</html>

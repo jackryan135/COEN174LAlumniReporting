@@ -19,10 +19,13 @@ from django.conf.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views
+from attendance.forms import LoginForm
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('attendance/', include('attendance.urls')),
     path('', RedirectView.as_view(url='/attendance/')),
+    path('accounts/', include('django.contrib.auth.urls'), {'authentication_form': LoginForm}),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
