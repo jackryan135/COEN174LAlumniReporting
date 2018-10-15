@@ -12,6 +12,7 @@ class Event(models.Model):
     time = models.TimeField()
     numAttend = models.IntegerField(default=0)
     approved = models.BooleanField(default=False)
+    image = models.ImageField()
 
     def __str__(self):
         """String for representing the Model object."""
