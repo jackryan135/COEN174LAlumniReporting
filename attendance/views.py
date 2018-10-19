@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from attendance.models import Event
 from .forms import SignUpForm, EventForm
@@ -13,8 +12,8 @@ now = datetime.now()
 
 # Create your views here.
 def index(request):
-    num_future_events = Event.objects.filter(date__gte=today).count()
-    query_set = Event.objects.filter(date__gte=today).order_by('date', 'time')[:3]
+    num_future_events = Event.objects.filter(date__gte=today).filter(approved=True).count()
+    query_set = Event.objects.filter(date__gte=today).filter(approved=True).order_by('date', 'time')[:3]
 
     context = {
         'num_future_events': num_future_events,
@@ -26,8 +25,11 @@ def index(request):
 
 class EventListView(generic.ListView):
     model = Event
-    query_set = Event.objects.filter(date__gte=today).order_by('date', 'time')[:21]
+    query_set = Event.objects.filter(date__gte=today).exclude(approved=False).order_by('date', 'time')[:21]
     template_name = 'listPage.html'
+
+    def get_queryset(self):
+        return self.query_set
 
 
 class EventDetailView(generic.DetailView):
@@ -59,3 +61,10 @@ def CreateEvent(request):
     else:
         event_form = EventForm()
     return render(request, "eventForm.html", {'form': event_form})
+
+
+def attend(request, pk):
+    event = Event.objects.get(pk=pk)
+    event.numAttend += 1
+    event.save()
+    return redirect('event_detail', pk)
