@@ -34,8 +34,11 @@
             <a class="nav-link" href="{% url 'events' %}">Events</a>
           </li>
           <li class="nav-item active">
+            {% if user.is_superuser %}
             <a class="nav-link" href="{% url 'new_event' %}">Create Event
               <span class="sr-only">(current)</span>
+            </a>
+            {% endif %}
             </a>
           </li>
           <li class="nav-item">
