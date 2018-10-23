@@ -1,0 +1,1 @@
+This file is to add a static folder for use with Heroku.
