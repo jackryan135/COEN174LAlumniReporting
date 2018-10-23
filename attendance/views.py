@@ -29,7 +29,7 @@ class EventListView(generic.ListView):
     template_name = 'listPage.html'
 
     def get_queryset(self):
-        return self.query_set
+        return self.query_set.all()
 
 
 class EventDetailView(generic.DetailView):
@@ -78,4 +78,4 @@ class ReportListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return self.query_set
+        return self.query_set.all()
