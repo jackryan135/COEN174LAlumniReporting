@@ -9,4 +9,5 @@ urlpatterns = [
     path('register/', views.RegisterUser, name='register'),
     path('newevent/', views.CreateEvent, name='new_event'),
     path('attend/<int:pk>', views.attend, name='attend'),
+    path('reports', views.ReportListView.as_view(), name='report'),
 ]

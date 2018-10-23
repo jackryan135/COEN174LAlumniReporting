@@ -36,6 +36,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'new_event' %}">Create Event</a>
             </li>
+            <li class="nav-item">
+              {% if user.is_superuser %}
+              <a class="nav-link" href="{% url 'report' %}">Reports</a>
+              {% endif %}
+            </li>
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'login' %}">Login
                 <span class="sr-only">(current)</span>

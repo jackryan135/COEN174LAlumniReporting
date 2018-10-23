@@ -68,3 +68,14 @@ def attend(request, pk):
     event.numAttend += 1
     event.save()
     return redirect('event_detail', pk)
+
+
+class ReportListView(generic.ListView):
+    model = Event
+    query_set = Event.objects.order_by('-date', 'time')
+    template_name = 'reportPage.html'
+    context_object_name = 'events'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return self.query_set
