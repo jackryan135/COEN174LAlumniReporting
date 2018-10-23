@@ -25,7 +25,7 @@ SECRET_KEY = 'wg9x_s5(t06)xy(j@bq(ye0gqirqm%7$+4qbx2tjk%k6@bvo-p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [‘0.0.0.0’, ‘localhost’, 'alumni-events.herokuapp.com']
 
 
 # Application definition
