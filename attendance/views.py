@@ -29,7 +29,7 @@ class EventListView(generic.ListView):
     template_name = 'listPage.html'
 
     def get_queryset(self):
-        return self.query_set.all()
+        return self.query_set.all() #all forces the query set to update
 
 
 class EventDetailView(generic.DetailView):
