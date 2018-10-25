@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth import login, authenticate
 from django.views import generic
 from attendance.models import Event
@@ -29,7 +30,7 @@ class EventListView(generic.ListView):
     template_name = 'listPage.html'
 
     def get_queryset(self):
-        return self.query_set.all() #all forces the query set to update
+        return self.query_set.all()  # all forces the query set to update
 
 
 class EventDetailView(generic.DetailView):
@@ -57,6 +58,9 @@ def CreateEvent(request):
     event_form = EventForm(data=request.POST)
     if event_form.is_valid():
         event = event_form.save()
+        if request.user.is_superuser:
+            event.approved = True
+            event.save()
         return redirect('event_detail', pk=event.pk)
     else:
         event_form = EventForm()
@@ -70,12 +74,12 @@ def attend(request, pk):
     return redirect('event_detail', pk)
 
 
-class ReportListView(generic.ListView):
-    model = Event
-    query_set = Event.objects.order_by('-date', 'time')
-    template_name = 'reportPage.html'
-    context_object_name = 'events'
-    paginate_by = 10
+def reports(request):
+    event_list = Event.objects.all()
+    event_list = event_list.filter(approved=True, date__lte=today)
+    event_list = event_list.order_by('-date', 'time')
+    paginator = Paginator(event_list, 10)  # Show 10 contacts per page
 
-    def get_queryset(self):
-        return self.query_set.all()
+    page = request.GET.get('page')
+    events = paginator.get_page(page)
+    return render(request, 'reportPage.html', {'events': events})
