@@ -79,7 +79,7 @@
           <td><a href="{% url 'event_detail' event.pk %}">{{ event.name }}</a></td>
           <td>{{ event.location }}</td>
           <td>{{ event.date }}</td>
-          <td>{{ event.time }}</td>
+          <td>{{ event.time|time:'g:i A' }}</td>
           <td>{{ event.numAttend }}</td>
         </tr>
         {% endfor %}
