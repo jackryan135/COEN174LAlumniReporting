@@ -86,7 +86,7 @@
           <li>{{ event.time|time:'g:i A' }}</li>
         </ul>
         {% if user.is_authenticated %}
-        <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">I'm Going</a>
+        <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">I'm Here</a>
         {% endif %}
       </div>
 
