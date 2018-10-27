@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, HttpResponse
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.contrib.auth import login, authenticate
 from django.views import generic
 from attendance.models import Event
