@@ -19,7 +19,6 @@ from django.conf.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views
 from attendance.forms import LoginForm
 
 

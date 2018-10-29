@@ -77,12 +77,12 @@
       {% for event in query_set %}
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card">
-          <img class="card-img-top" src="http://placehold.it/750x500" alt="">
+          <img class="card-img-top" src="https://s3-us-west-2.amazonaws.com/alumrecording/SantaClaraUniversity-logo.jpg" alt="">
           <div class="card-body">
             <h4 class="card-title">
               <a href="{% url 'event_detail' event.pk %}">{{ event.name }}</a>
             </h4>
-            <p class="card-text">{{ event.description|truncatechars:300 }}</p>
+            <p class="card-text">{{ event.description|truncatechars:180 }}</p>
           </div>
         </div>
       </div>
