@@ -70,25 +70,29 @@
     <h1 class="my-4">{{ event.name }}</h1>
 
     <!-- Portfolio Item Row -->
+    <div class="container">
     <div class="row">
-
-      <div class="col-md-6 mr-5">
-        <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/alumrecording/SantaClaraUniversity-logo.jpg" alt="">
+      <h3 class="my-3">Event Description</h3>
+    </div>
+    <div class = "row">
+      <p>{{ event.description }}</p>
+    </div>
+  </div>
+      <div class="container">
+        <div class="row">
+          <h3 class="my-3">Event Details</h3>
+        </div>
+        <div class="row">
+          <ul>
+            <li>{{ event.location }}</li>
+            <li>{{ event.date }}</li>
+            <li>{{ event.time|time:'g:i A' }}</li>
+          </ul>
+        </div>
       </div>
-
-      <div class="col-md-4 ml-3">
-        <h3 class="my-3">Event Description</h3>
-        <p>{{ event.description }}</p>
-        <h3 class="my-3">Event Details</h3>
-        <ul>
-          <li>{{ event.location }}</li>
-          <li>{{ event.date }}</li>
-          <li>{{ event.time|time:'g:i A' }}</li>
-        </ul>
-        {% if user.is_authenticated %}
-        <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">I'm Here</a>
-        {% endif %}
-      </div>
+      {% if user.is_authenticated %}
+      <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">I'm Here</a>
+      {% endif %}
 
     </div>
     <!-- /.row -->
