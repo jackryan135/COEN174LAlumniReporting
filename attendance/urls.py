@@ -10,4 +10,5 @@ urlpatterns = [
     path('newevent/', views.CreateEvent, name='new_event'),
     path('attend/<int:pk>', views.attend, name='attend'),
     path('reports', views.reports, name='report'),
+    path('reports/<int:pk>', views.attendanceList, name='attend_list'),
 ]

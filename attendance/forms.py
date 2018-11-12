@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Event
+from .models import Event, Alumni
 
 
 class LoginForm(AuthenticationForm):
@@ -29,4 +29,18 @@ class EventForm(forms.ModelForm):
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'})
+        }
+
+
+class AttendForm(forms.ModelForm):
+    class Meta:
+        model = Alumni
+        fields = ['fName', 'lName', 'email', 'school', 'yearGrad', 'major', ]
+        labels = {
+            'fName': "First Name",
+            'lName': "Last Name",
+            'email': "E-Mail",
+            'school': "College Attended",
+            'yearGrad': "Graduation Year",
+            'makor': "Major",
         }
