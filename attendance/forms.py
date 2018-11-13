@@ -40,7 +40,7 @@ class AttendForm(forms.ModelForm):
             'fName': "First Name",
             'lName': "Last Name",
             'email': "E-Mail",
-            'school': "College Attended",
+            'school': "School",
             'yearGrad': "Graduation Year",
             'makor': "Major",
         }
