@@ -42,5 +42,5 @@ class AttendForm(forms.ModelForm):
             'email': "E-Mail",
             'school': "School",
             'yearGrad': "Graduation Year",
-            'makor': "Major",
+            'major': "Major",
         }

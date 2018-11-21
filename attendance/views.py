@@ -71,9 +71,9 @@ def attend(request, pk):
     alumni_form = AttendForm(data=request.POST)
     if alumni_form.is_valid():
         event = Event.objects.get(pk=pk)
-        alumni = alumni_form.save(commit=False)
-        alumni.attend = event
         event.numAttend += 1
+        alumni = alumni_form.save(commit=False)
+        alumni.attended = event
         event.save()
         alumni.save()
         return redirect('event_detail', pk)

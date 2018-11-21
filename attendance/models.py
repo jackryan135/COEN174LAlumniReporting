@@ -24,7 +24,7 @@ class Alumni(models.Model):
     school = models.CharField(max_length=50, help_text='Enter school graduated from')
     yearGrad = models.PositiveSmallIntegerField(help_text='Enter graduation year')
     major = models.CharField(max_length=70, help_text='Enter your major')
-    attended = models.ForeignKey(Event, on_delete=models.CASCADE, null = True)
+    attended = models.ForeignKey(Event, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.fname + ' ' + self.lname
+        return self.fName + ' ' + self.lName
