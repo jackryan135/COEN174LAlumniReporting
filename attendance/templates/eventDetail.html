@@ -90,9 +90,8 @@
           </ul>
         </div>
       </div>
-      {% if user.is_authenticated %}
-      <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">I'm Here</a>
-      {% endif %}
+
+      <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">Register Attendance</a>
 
     </div>
     <!-- /.row -->

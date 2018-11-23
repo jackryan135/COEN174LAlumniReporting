@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator
 from django.contrib.auth import login, authenticate
 from django.views import generic
 from attendance.models import Event
-from .forms import SignUpForm, EventForm
+from .forms import SignUpForm, EventForm, AttendForm
 from datetime import datetime
 
 
@@ -68,10 +68,18 @@ def CreateEvent(request):
 
 
 def attend(request, pk):
-    event = Event.objects.get(pk=pk)
-    event.numAttend += 1
-    event.save()
-    return redirect('event_detail', pk)
+    alumni_form = AttendForm(data=request.POST)
+    if alumni_form.is_valid():
+        event = Event.objects.get(pk=pk)
+        event.numAttend += 1
+        alumni = alumni_form.save(commit=False)
+        alumni.attended = event
+        event.save()
+        alumni.save()
+        return redirect('event_detail', pk)
+    else:
+        alumni_form = AttendForm()
+    return render(request, "attendForm.html", {'form': alumni_form})
 
 
 def reports(request):
@@ -83,3 +91,9 @@ def reports(request):
     page = request.GET.get('page')
     events = paginator.get_page(page)
     return render(request, 'reportPage.html', {'events': events})
+
+
+def attendanceList(request, pk):
+    event = Event.objects.get(pk=pk)
+    alumni = event.alumni_set.all()
+    return render(request, 'attendList.html', {'alumni': alumni})

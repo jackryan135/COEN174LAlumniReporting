@@ -60,64 +60,39 @@
   <!-- Page Content -->
   {% block content %}
   <div class="container mt-3">
-    <h1>Event Reports</h1>
+    <h1>Attendance Reports</h1>
 
-    {% if events %}
+    {% if alumni %}
     <table class="table table-bordered table-striped mt-3">
       <thead class="thead-dark">
         <tr>
-          <th>Event Name</th>
-          <th>Location</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Number Attended</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-Mail</th>
+          <th>Graduation Year</th>
+          <th>School Attended</th>
+          <th>Major</th>
         </tr>
       </thead>
       <tbody>
-        {% for event in events %}
+        {% for alumnus in alumni.all %}
         <tr>
-          <td><a href="{% url 'event_detail' event.pk %}">{{ event.name }}</a></td>
-          <td>{{ event.location }}</td>
-          <td>{{ event.date }}</td>
-          <td>{{ event.time|time:'g:i A' }}</td>
-          <td><a href="{% url 'attend_list' event.pk %}">{{ event.numAttend }}</a></td>
+          <td>{{ alumnus.fName }}</td>
+          <td>{{ alumnus.lName }}</td>
+          <td>{{ alumnus.email }}</td>
+          <td>{{ alumnus.yearGrad }}</td>
+          <td>{{ alumnus.school }}</td>
+          <td>{{ alumnus.major }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
 
-    <nav aria-label="pagination">
-    <ul class="pagination justify-content-center">
-        {% if events.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ events.previous_page_number }}" tabindex="-1">&laquo;</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-        </li>
-        {% endif %}
-
-        <li class="page-item disabled">
-          <a class="page-link" href="#">Page {{ events.number }} of {{ events.paginator.num_pages }}</a>
-        </li>
-
-        {% if events.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ events.next_page_number }}">&raquo;</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" href="#">&raquo;</a>
-        </li>
-        {% endif %}
-    </ul>
-  </nav>
     <!-- /.row -->
     {% else %}
     <div class="row">
       <div class="col-lg-12 text-center">
-        <p class="lead">There are currently no event reports to view</p>
+        <p class="lead">There are currently no attendees to view</p>
       </div>
     </div>
     {% endif %}
