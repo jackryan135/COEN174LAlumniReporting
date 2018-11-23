@@ -61,6 +61,9 @@ def CreateEvent(request):
         if request.user.is_superuser:
             event.approved = True
             event.save()
+        else:
+            event.approved = False
+            event.save()
         return redirect('event_detail', pk=event.pk)
     else:
         event_form = EventForm()

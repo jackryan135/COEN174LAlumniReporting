@@ -50,6 +50,11 @@
             {% endif %}
           </li>
           <li class="nav-item">
+            {% if user.is_superuser %}
+            <a class="nav-link">Approve Events</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
             {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             {% else %}
