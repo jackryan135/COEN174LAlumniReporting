@@ -72,6 +72,7 @@
           <th>Graduation Year</th>
           <th>School Attended</th>
           <th>Major</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -83,6 +84,7 @@
           <td>{{ alumnus.yearGrad }}</td>
           <td>{{ alumnus.school }}</td>
           <td>{{ alumnus.major }}</td>
+          <td><button type="button" class="btn btn-danger">Delete</button></td>
         </tr>
         {% endfor %}
       </tbody>
