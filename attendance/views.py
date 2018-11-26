@@ -4,16 +4,14 @@ from django.contrib.auth import login, authenticate
 from django.views import generic
 from attendance.models import Event
 from django.utils import timezone
-from .forms import SignUpForm, EventForm, AttendForm, UpdateForm
+from .forms import EventForm, AttendForm, UpdateForm
 from datetime import datetime
-from django import forms
 
 
 today = datetime.today()
 now = datetime.now()
 
 
-# Create your views here.
 def index(request):
     num_future_events = Event.objects.filter(date__gte=today).filter(approved=True).count()
     query_set = Event.objects.filter(date__gte=today).filter(approved=True).order_by('date', 'time')[:3]
@@ -51,7 +49,7 @@ class EventUpdateView(generic.UpdateView):
         event.save()
         return redirect('event_detail', pk = event.pk)
 
-def RegisterUser(request):
+"""def RegisterUser(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -65,7 +63,7 @@ def RegisterUser(request):
         form = SignUpForm()
 
     return render(request, 'register.html', {'form': form})
-
+"""
 
 def CreateEvent(request):
     event_form = EventForm(data=request.POST)
@@ -102,7 +100,7 @@ def reports(request):
     event_list = Event.objects.all()
     event_list = event_list.filter(approved=True, date__lte=today)
     event_list = event_list.order_by('-date', 'time')
-    paginator = Paginator(event_list, 10)  # Show 10 contacts per page
+    paginator = Paginator(event_list, 10)  # Show 10 events per page
 
     page = request.GET.get('page')
     events = paginator.get_page(page)
@@ -118,7 +116,7 @@ def approveEvents(request):
     event_list = Event.objects.all()
     event_list = event_list.filter(approved=False)
     event_list = event_list.order_by('-date', 'time')
-    paginator = Paginator(event_list, 10)  # Show 10 contacts per page
+    paginator = Paginator(event_list, 10)  # Show 10 events per page
 
     page = request.GET.get('page')
     events = paginator.get_page(page)
@@ -127,4 +125,3 @@ def approveEvents(request):
 def eventSubmittedBy(request, pk):
     event = Event.objects.get(pk=pk)
     return render(request, 'eventSubmittedBy.html', {'event': event})
-
