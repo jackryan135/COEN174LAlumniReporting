@@ -114,6 +114,7 @@ def attendanceList(request, pk):
     alumni = event.alumni_set.all()
     return render(request, 'attendList.html', {'alumni': alumni})
 
+
 def approveEvents(request):
     event_list = Event.objects.all()
     event_list = event_list.filter(approved=False)
@@ -127,4 +128,25 @@ def approveEvents(request):
 def eventSubmittedBy(request, pk):
     event = Event.objects.get(pk=pk)
     return render(request, 'eventSubmittedBy.html', {'event': event})
+
+def eventApproved(request, pk):
+    event=Event.objects.get(pk=pk)
+    event.approved = True
+    event.save()
+    return render(request, 'eventApproved.html', {'event': event})
+
+def eventDenied(request, pk):
+    event=Event.objects.get(pk=pk)
+    event.delete()
+    return render(request, 'eventDenied.html', {'event': event})
+
+def deleteEvent(request, pk):
+    event=Event.objects.get(pk=pk)
+    event.delete()
+    return render(request, 'deleteEvent.html', {'event': event})
+
+
+
+
+
 
