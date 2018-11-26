@@ -87,8 +87,8 @@
           <td>{{ event.date }}</td>
           <td>{{ event.time|time:'g:i A' }}</td>
           <td><a href="{% url 'event_submittedBy' event.pk %}">{{event.event_fName}} {{event.event_lName}}</a></td>
-          <td><button type="button" class="btn btn-success">Approve</button></td>
-          <td><button type="button" class="btn btn-danger">Deny</button></td>
+          <td><a href=""><button type="button" class="btn btn-success">Approve</button></a></td>
+          <td><a href=""><button type="button" class="btn btn-danger">Deny</button></a></td>
         </tr>
         {% endfor %}
       </tbody>
