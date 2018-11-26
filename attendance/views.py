@@ -3,8 +3,10 @@ from django.core.paginator import Paginator
 from django.contrib.auth import login, authenticate
 from django.views import generic
 from attendance.models import Event
-from .forms import SignUpForm, EventForm, AttendForm
+from django.utils import timezone
+from .forms import SignUpForm, EventForm, AttendForm, UpdateForm
 from datetime import datetime
+from django import forms
 
 
 today = datetime.today()
@@ -37,6 +39,17 @@ class EventDetailView(generic.DetailView):
     model = Event
     template_name = 'eventDetail.html'
 
+class EventUpdateView(generic.UpdateView):
+    model = Event
+    form_class = UpdateForm
+    template_name = 'editEvent.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'event'
+
+    def form_valid(self, form):
+        event = form.save(commit=False)
+        event.save()
+        return redirect('event_detail', pk = event.pk)
 
 def RegisterUser(request):
     if request.method == 'POST':

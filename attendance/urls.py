@@ -6,7 +6,12 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('events/', views.EventListView.as_view(), name='events'),
     path('events/<int:pk>', views.EventDetailView.as_view(), name='event_detail'),
+<<<<<<< Updated upstream
     # path('register/', views.RegisterUser, name='register'),
+=======
+    path('events/<int:pk>/edit', views.EventUpdateView.as_view(), name='event_update'),
+    path('register/', views.RegisterUser, name='register'),
+>>>>>>> Stashed changes
     path('newevent/', views.CreateEvent, name='new_event'),
     path('attend/<int:pk>', views.attend, name='attend'),
     path('reports', views.reports, name='report'),

@@ -52,3 +52,12 @@ class AttendForm(forms.ModelForm):
             'yearGrad': "Graduation Year",
             'major': "Major",
         }
+
+class UpdateForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['name', 'description', 'location', 'date', 'time', ]
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'})
+        }
