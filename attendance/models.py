@@ -12,6 +12,13 @@ class Event(models.Model):
     numAttend = models.IntegerField(default=0)
     approved = models.BooleanField(default=False)
 
+    event_fName = models.CharField(max_length=45, help_text='Enter your first name', null=True)
+    event_lName = models.CharField(max_length=45, help_text='Enter your last name', null=True)
+    event_email = models.EmailField(null=True)
+    event_school = models.CharField(max_length=50, help_text='Enter school graduated from', null=True)
+    event_yearGrad = models.PositiveSmallIntegerField(help_text='Enter graduation year', null=True)
+    event_major = models.CharField(max_length=70, help_text='Enter your major', null=True)
+
     def __str__(self):
         """String for representing the Model object."""
         return self.name

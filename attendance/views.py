@@ -111,3 +111,7 @@ def approveEvents(request):
     events = paginator.get_page(page)
     return render(request, 'approveEvents.html', {'events': events})
 
+def eventSubmittedBy(request, pk):
+    event = Event.objects.get(pk=pk)
+    return render(request, 'eventSubmittedBy.html', {'event': event})
+

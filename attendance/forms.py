@@ -25,10 +25,18 @@ class SignUpForm(UserCreationForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'description', 'location', 'date', 'time', ]
+        fields = ['name', 'description', 'location', 'date', 'time', 'event_fName', 'event_lName', 'event_email', 'event_school', 'event_yearGrad', 'event_major', ]
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'})
+        }
+        labels = {
+            'event_fName': "First Name",
+            'event_lName': "Last Name",
+            'event_email': "E-Mail",
+            'event_school': "School",
+            'event_yearGrad': "Graduation Year",
+            'event_major': "Major",
         }
 
 

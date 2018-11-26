@@ -11,5 +11,6 @@ urlpatterns = [
     path('attend/<int:pk>', views.attend, name='attend'),
     path('reports', views.reports, name='report'),
     path('reports/<int:pk>', views.attendanceList, name='attend_list'),
-    path('approve', views.approveEvents, name = 'approve'),
+    path('approve/', views.approveEvents, name = 'approve'),
+    path('approve/<int:pk>', views.eventSubmittedBy, name='event_submittedBy')
 ]

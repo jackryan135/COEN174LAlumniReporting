@@ -64,71 +64,29 @@
 
   {% block content %}
   <div class="container mt-3">
-    <h1>Unapproved Events</h1>
+    <h1>{{ event.name }} Submitted By:</h1>
 
-    {% if events %}
     <table class="table table-bordered table-striped mt-3">
       <thead class="thead-dark">
         <tr>
-          <th>Event Name</th>
-          <th>Location</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Submitted By</th>
-          <th>Approve</th>
-          <th>Deny</th>
+          <th>Name</th>
+          <th>E-Mail</th>
+          <th>Graduation Year</th>
+          <th>School Attended</th>
+          <th>Major</th>
         </tr>
       </thead>
       <tbody>
-        {% for event in events %}
         <tr>
-          <td><a href="{% url 'event_detail' event.pk %}">{{ event.name }}</a></td>
-          <td>{{ event.location }}</td>
-          <td>{{ event.date }}</td>
-          <td>{{ event.time|time:'g:i A' }}</td>
-          <td><a href="{% url 'event_submittedBy' event.pk %}">{{event.event_fName}} {{event.event_lName}}</a></td>
-          <td><button type="button" class="btn btn-success">Approve</button></td>
-          <td><button type="button" class="btn btn-danger">Deny</button></td>
+          <td>{{ event.event_fName }} {{ event.event_lName }}</td>
+          <td>{{ event.event_email }}</td>
+          <td>{{ event.event_yearGrad }}</td>
+          <td>{{ event.event_school }}</td>
+          <td>{{ event.event_major }}</td>
         </tr>
-        {% endfor %}
       </tbody>
     </table>
-
-    <nav aria-label="pagination">
-    <ul class="pagination justify-content-center">
-        {% if events.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ events.previous_page_number }}" tabindex="-1">&laquo;</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-        </li>
-        {% endif %}
-
-        <li class="page-item disabled">
-          <a class="page-link" href="#">Page {{ events.number }} of {{ events.paginator.num_pages }}</a>
-        </li>
-
-        {% if events.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ events.next_page_number }}">&raquo;</a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" href="#">&raquo;</a>
-        </li>
-        {% endif %}
-    </ul>
-  </nav>
     <!-- /.row -->
-    {% else %}
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <p class="lead">There are currently no unapproved events</p>
-      </div>
-    </div>
-    {% endif %}
   </div>
   {% endblock %}
 
