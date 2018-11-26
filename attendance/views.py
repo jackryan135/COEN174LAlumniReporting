@@ -125,6 +125,7 @@ def approveEvents(request):
 def eventSubmittedBy(request, pk):
     event = Event.objects.get(pk=pk)
     return render(request, 'eventSubmittedBy.html', {'event': event})
+<<<<<<< ours
 
 def eventApproved(request, pk):
     event=Event.objects.get(pk=pk)
@@ -147,3 +148,5 @@ def deleteEvent(request, pk):
 
 
 
+=======
+>>>>>>> theirs

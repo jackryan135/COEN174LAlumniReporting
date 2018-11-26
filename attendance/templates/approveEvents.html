@@ -87,8 +87,13 @@
           <td>{{ event.date }}</td>
           <td>{{ event.time|time:'g:i A' }}</td>
           <td><a href="{% url 'event_submittedBy' event.pk %}">{{event.event_fName}} {{event.event_lName}}</a></td>
+<<<<<<< ours
           <td><a href="{% url 'event_approved' event.pk %}"><button type="button" class="btn btn-success">Approve</button></a></td>
           <td><a href="{% url 'event_denied' event.pk %}"><button type="button" class="btn btn-danger">Deny</button></a></td>
+=======
+          <td><a href=""><button type="button" class="btn btn-success">Approve</button></a></td>
+          <td><a href=""><button type="button" class="btn btn-danger">Deny</button></a></td>
+>>>>>>> theirs
         </tr>
         {% endfor %}
       </tbody>
