@@ -100,3 +100,14 @@ def attendanceList(request, pk):
     event = Event.objects.get(pk=pk)
     alumni = event.alumni_set.all()
     return render(request, 'attendList.html', {'alumni': alumni})
+
+def approveEvents(request):
+    event_list = Event.objects.all()
+    event_list = event_list.filter(approved=False)
+    event_list = event_list.order_by('-date', 'time')
+    paginator = Paginator(event_list, 10)  # Show 10 contacts per page
+
+    page = request.GET.get('page')
+    events = paginator.get_page(page)
+    return render(request, 'approveEvents.html', {'events': events})
+

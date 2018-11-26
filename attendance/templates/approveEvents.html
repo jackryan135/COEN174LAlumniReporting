@@ -37,16 +37,16 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'new_event' %}">Create Event</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             {% if user.is_superuser %}
             <a class="nav-link" href="{% url 'report' %}">Reports
-              <span class="sr-only">(current)</span>
             </a>
             {% endif %}
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             {% if user.is_superuser %}
             <a class="nav-link" href="{% url 'approve' %}">Approve Events</a>
+            <span class="sr-only">(current)</span>
             {% endif %}
           </li>
           <li class="nav-item">
@@ -62,10 +62,9 @@
   </nav>
   {% endblock %}
 
-  <!-- Page Content -->
   {% block content %}
   <div class="container mt-3">
-    <h1>Event Reports</h1>
+    <h1>Unapproved Events</h1>
 
     {% if events %}
     <table class="table table-bordered table-striped mt-3">
@@ -75,7 +74,9 @@
           <th>Location</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Number Attended</th>
+          <th>Submitted By</th>
+          <th>Approve</th>
+          <th>Deny</th>
         </tr>
       </thead>
       <tbody>
@@ -85,7 +86,9 @@
           <td>{{ event.location }}</td>
           <td>{{ event.date }}</td>
           <td>{{ event.time|time:'g:i A' }}</td>
-          <td><a href="{% url 'attend_list' event.pk %}">{{ event.numAttend }}</a></td>
+          <td></td>
+          <td><button type="button" class="btn btn-success">Approve</button></td>
+          <td><button type="button" class="btn btn-danger">Deny</button></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -122,7 +125,7 @@
     {% else %}
     <div class="row">
       <div class="col-lg-12 text-center">
-        <p class="lead">There are currently no event reports to view</p>
+        <p class="lead">There are currently no unapproved events</p>
       </div>
     </div>
     {% endif %}
