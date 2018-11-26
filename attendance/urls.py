@@ -13,5 +13,6 @@ urlpatterns = [
     path('reports', views.reports, name='report'),
     path('reports/<int:pk>', views.attendanceList, name='attend_list'),
     path('approve/', views.approveEvents, name = 'approve'),
-    path('approve/<int:pk>', views.eventSubmittedBy, name='event_submittedBy')
+    path('approve/<int:pk>', views.approveEvents, name = 'approve_event'),
+    path('approve/<int:pk>/submittedby', views.eventSubmittedBy, name='event_submittedBy'),
 ]
