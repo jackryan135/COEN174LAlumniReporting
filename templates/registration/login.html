@@ -34,11 +34,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'events' %}">Events</a>
           </li>
-          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'new_event' %}">Create Event</a>
           </li>
-          {% endif %}
           <li class="nav-item">
             {% if user.is_superuser %}
             <a class="nav-link" href="{% url 'report' %}">Reports</a>
