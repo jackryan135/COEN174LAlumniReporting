@@ -95,7 +95,7 @@
     </table>
 
     <nav aria-label="pagination">
-    <ul class="pagination justify-content-center">
+      <ul class="pagination justify-content-center">
         {% if events.has_previous %}
         <li class="page-item">
           <a class="page-link" href="?page={{ events.previous_page_number }}" tabindex="-1">&laquo;</a>
@@ -119,8 +119,8 @@
           <a class="page-link" href="#">&raquo;</a>
         </li>
         {% endif %}
-    </ul>
-  </nav>
+      </ul>
+    </nav>
     <!-- /.row -->
     {% else %}
     <div class="row">

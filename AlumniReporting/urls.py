@@ -1,3 +1,5 @@
+# Authors: Sam Burns, Simran Judge, Jack Ryan
+# urls.py: Specify the global URL patterns which Django uses to match URL requests to specific views.
 """AlumniReporting URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -26,5 +28,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('attendance/', include('attendance.urls')),
     path('', RedirectView.as_view(url='/attendance/')),
-    path('accounts/', include('django.contrib.auth.urls'), {'authentication_form': LoginForm}),
+    path('accounts/', include('django.contrib.auth.urls'),
+         {'authentication_form': LoginForm}),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

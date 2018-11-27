@@ -74,43 +74,43 @@
 
     <!-- Portfolio Item Row -->
     <div class="container">
-    <div class="row">
-      <h3 class="my-3">Event Description</h3>
-    </div>
-    <div class = "row">
-      <p>{{ event.description }}</p>
-    </div>
-  </div>
-      <div class="container">
-        <div class="row">
-          <h3 class="my-3">Event Details</h3>
-        </div>
-        <div class="row">
-          <ul>
-            <li>{{ event.location }}</li>
-            <li>{{ event.date }}</li>
-            <li>{{ event.time|time:'g:i A' }}</li>
-          </ul>
-        </div>
+      <div class="row">
+        <h3 class="my-3">Event Description</h3>
       </div>
-
-      {% if event.approved == True %}
-      <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">Register Attendance</a>
-      {% endif %}
-      {% if user.is_superuser %}
-      <a class="btn btn-primary mt-3 ml-3" href="{% url 'event_update' event.pk %}">Edit Event</a>
-      {% if event.approved == True  %}
-      <a class="btn btn-danger mt-3 ml-3" href="{% url 'delete_event' event.pk %}">Delete Event</a>
-      {% endif %}
-      {% endif %}
-      {% if user.is_superuser %}
-      {%if event.approved == False %}
-      <a class="btn btn-success mt-3 ml-3" href="{% url 'event_approved' event.pk %}">Approve Event</a>
-      <a class="btn btn-danger mt-3 ml-3" href="{% url 'event_denied' event.pk %}">Deny Event</a>
-      {% endif %}
-      {% endif %}
+      <div class="row">
+        <p>{{ event.description }}</p>
+      </div>
     </div>
-    <!-- /.row -->
+    <div class="container">
+      <div class="row">
+        <h3 class="my-3">Event Details</h3>
+      </div>
+      <div class="row">
+        <ul>
+          <li>{{ event.location }}</li>
+          <li>{{ event.date }}</li>
+          <li>{{ event.time|time:'g:i A' }}</li>
+        </ul>
+      </div>
+    </div>
+
+    {% if event.approved == True %}
+    <a class="btn btn-primary mt-3 ml-3" href="{% url 'attend' event.pk %}">Register Attendance</a>
+    {% endif %}
+    {% if user.is_superuser %}
+    <a class="btn btn-primary mt-3 ml-3" href="{% url 'event_update' event.pk %}">Edit Event</a>
+    {% if event.approved == True %}
+    <a class="btn btn-danger mt-3 ml-3" href="{% url 'delete_event' event.pk %}">Delete Event</a>
+    {% endif %}
+    {% endif %}
+    {% if user.is_superuser %}
+    {%if event.approved == False %}
+    <a class="btn btn-success mt-3 ml-3" href="{% url 'event_approved' event.pk %}">Approve Event</a>
+    <a class="btn btn-danger mt-3 ml-3" href="{% url 'event_denied' event.pk %}">Deny Event</a>
+    {% endif %}
+    {% endif %}
+  </div>
+  <!-- /.row -->
 
   </div>
   <!-- /.container -->

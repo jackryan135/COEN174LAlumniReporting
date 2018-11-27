@@ -1,3 +1,5 @@
+# Authors: Sam Burns, Simran Judge, Jack Ryan
+# wsgi.py: Specifies settings for the WSGI server hosting the application.
 """
 WSGI config for AlumniReporting project.
 

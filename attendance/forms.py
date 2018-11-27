@@ -35,7 +35,8 @@ class LoginForm(AuthenticationForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'description', 'location', 'date', 'time', 'event_fName', 'event_lName', 'event_email', 'event_school', 'event_yearGrad', 'event_major', ]
+        fields = ['name', 'description', 'location', 'date', 'time', 'event_fName',
+                  'event_lName', 'event_email', 'event_school', 'event_yearGrad', 'event_major', ]
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'})

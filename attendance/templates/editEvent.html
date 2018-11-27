@@ -1,4 +1,3 @@
-{% if user.is_superuser %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +15,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
+{% if user.is_superuser %}
 
 <body>
 
@@ -93,6 +93,11 @@
   <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
+{% else %}
+
+<body>
+  <h1>You are not authorized to view this page.</h1>
+</body>
+{% endif %}
 
 </html>
-{% endif %}
