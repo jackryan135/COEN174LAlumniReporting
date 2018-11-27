@@ -1,11 +1,12 @@
-#Authors: Sam Burns, Simran Judge, Jack Ryan
-#models.py: Describes the two models (classes), Event and Alumni, that will be stored in the database.
+# Authors: Sam Burns, Simran Judge, Jack Ryan
+# models.py: Describes the two models (classes), Event and Alumni, that will be stored in the database.
 
 from django.db import models
 
-#Class Name: Event
-#Parameters: Model
-#Description: This defines our model, Event, and specifies that it is a Django model which can be stored in the database.
+
+# Class Name: Event
+# Parameters: Model
+# Description: This defines our model, Event, and specifies that it is a Django model which can be stored in the database.
 class Event(models.Model):
     """Model representing an Event."""
     name = models.CharField(max_length=200, help_text='Enter an event name')
@@ -27,9 +28,10 @@ class Event(models.Model):
         """String for representing the Model object."""
         return self.name
 
-#Class Name: Alumni
-#Parameters: Model
-#Description: This defines our model, Alumni, and specifies that it is a Django model which can be stored in the database.
+
+# Class Name: Alumni
+# Parameters: Model
+# Description: This defines our model, Alumni, and specifies that it is a Django model which can be stored in the database.
 class Alumni(models.Model):
     fName = models.CharField(max_length=45, help_text='Enter your first name')
     lName = models.CharField(max_length=45, help_text='Enter your last name')
