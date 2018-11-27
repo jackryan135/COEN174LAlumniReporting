@@ -114,7 +114,10 @@ def attendanceList(request, pk):
 
 def deleteAlumni(request, pk):
     alumni = Alumni.objects.get(pk=pk)
+    event = alumni.attended
+    event.numAttend -= 1
     alumni.delete()
+    event.save()
     return render(request, 'deleteAlumni.html', {'alumni': alumni})
 
 def approveEvents(request):
