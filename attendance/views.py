@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator
 from django.contrib.auth import login, authenticate
 from django.views import generic
-from attendance.models import Event
+from attendance.models import Event, Alumni
 from django.utils import timezone
 from .forms import EventForm, AttendForm, UpdateForm
 from datetime import datetime
@@ -111,6 +111,11 @@ def attendanceList(request, pk):
     event = Event.objects.get(pk=pk)
     alumni = event.alumni_set.all()
     return render(request, 'attendList.html', {'alumni': alumni})
+
+def deleteAlumni(request, pk):
+    alumni = Alumni.objects.get(pk=pk)
+    alumni.delete()
+    return render(request, 'deleteAlumni.html', {'alumni': alumni})
 
 def approveEvents(request):
     event_list = Event.objects.all()
