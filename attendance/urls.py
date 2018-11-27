@@ -1,8 +1,10 @@
-#simran
+#Authors: Sam Burns, Simran Judge, Jack Ryan
+#urls.py: Specify the URL patterns which Django uses to match URL requests to specific views.
+
 from django.urls import path
 from attendance import views
 
-
+#assign a view with its specified name to the appropriate URL path
 urlpatterns = [
     path('', views.index, name='index'),
     path('events/', views.EventListView.as_view(), name='events'),
